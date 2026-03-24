@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+
+/** Uses https://www.astroicon.dev/getting-started/
+    Find icons via guide: https://www.astroicon.dev/guides/customization/#open-source-icon-sets
+    Installed packs: @iconify-json/mdi, @iconify-json/simple-icons
+*/
+const socialLinks: {
+    friendlyName: string;
+    isWebmention?: boolean;
+    link: string;
+    name: string;
+}[] = [
+    {
+        friendlyName: "Github",
+        link: "https://github.com/Zee-Loong",
+        name: "mdi:github",
+    },
+    {
+        friendlyName: "Email",
+        link: "mailto:jiao2275868610@gmail.com", // 👉 这里换成你的真实邮箱
+        name: "mdi:email",
+    },
+    {
+        friendlyName: "Bilibili",
+        link: "https://space.bilibili.com/348670891", // 👉 这里换成你的B站主页链接
+        name: "simple-icons:bilibili", 
+    },
+    {
+        friendlyName: "Zhihu",
+        link: "https://www.zhihu.com/people/ZeeLoong", // 👉 这里换成你的知乎主页链接
+        name: "simple-icons:zhihu",
+    },
+    {
+        friendlyName: "Xiaohongshu",
+        link: "https://www.xiaohongshu.com/user/profile/374517478", // 👉 这里换成你的小红书主页链接
+        name: "simple-icons:xiaohongshu",
+    },
+];
+---
+
+<div class="flex flex-wrap items-end gap-x-2">
+    <p>Find me on</p>
+    <ul class="flex flex-1 items-center gap-x-2 sm:flex-initial">
+        {
+            socialLinks.map(({ friendlyName, isWebmention, link, name }) => (
+                <li class="flex">
+                    <a
+                        class="inline-block hover:text-link drop-shadow-[0px_2.5px_2.5px_rgba(0,0,0,0.175)]"
+                        href={link}
+                        rel={`noreferrer ${isWebmention ? "me authn" : ""}`}
+                        target="_blank"
+                    >
+                        <Icon aria-hidden="true" class="h-8 w-8" focusable="false" name={name} />
+                        <span class="sr-only">{friendlyName}</span>
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</div>
